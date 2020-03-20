@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getNewsList } from '../../redux/news/newsActions';
 
+import { newsPropTypes } from '../../services/utils/newsPropTypes';
+
 import CardItem from '../../components/CardItem';
 import Spinner from '../../components/Spinner';
 
 const News = ({ news, loading, getNewsList }) => {
-  console.log(news);
   useEffect(() => {
     let isCurrent = true;
 
@@ -31,7 +32,9 @@ const News = ({ news, loading, getNewsList }) => {
   );
 };
 
-News.propTypes = {};
+News.propTypes = {
+  news: PropTypes.arrayOf(PropTypes.shape(newsPropTypes))
+};
 
 const mapStateToProps = ({ news: { news, loading } }) => ({
   news,
