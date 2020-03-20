@@ -12,8 +12,8 @@ import './App.css';
 const App = () => {
   return (
     <HashRouter>
-      <div className='App'>
-        <Header />
+      <Header />
+      <div className='container py-3'>
         <Routes />
       </div>
     </HashRouter>

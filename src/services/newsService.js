@@ -22,9 +22,9 @@ class NewsService {
 
   getNews = async () => {
     const res = await this.getResource(
-      `/top-headlines?country=us&apiKey=bfc2f3acc4214df2ba209a463899a605`
+      `/top-headlines?country=us&apiKey=${this._apiKey}`
     );
-    return res;
+    return res.articles;
   };
 }
 export default NewsService;
