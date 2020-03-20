@@ -22,6 +22,7 @@ const CardItem = ({ data }) => {
         </div>
         <ul className='list-group list-group-flush'>
           <li className='list-group-item'>Author: {author}</li>
+          <li className='list-group-item'>Published at: {publishedAt}</li>
         </ul>
         <div className='card-body'>
           <a href={url} className='card-link'>
