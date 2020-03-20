@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <HashRouter>
       <div className='App'>
@@ -18,6 +18,6 @@ function App() {
       </div>
     </HashRouter>
   );
-}
+};
 
 export default App;
