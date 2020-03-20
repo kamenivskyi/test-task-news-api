@@ -1,0 +1,7 @@
+const newsTypes = {
+  GET_NEWS_LIST: 'GET_NEWS_LIST',
+  GET_NEWS_LIST_LOADING: 'GET_NEWS_LIST_LOADING',
+  GET_NEWS_LIST_ERROR: 'GET_NEWS_LIST_ERROR'
+};
+
+export default newsTypes;

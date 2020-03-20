@@ -1,5 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+
+import store from './redux/store';
 
 import Routes from './routes';
 
@@ -12,10 +15,12 @@ import './App.css';
 const App = () => {
   return (
     <HashRouter>
-      <Header />
-      <div className='container py-3'>
-        <Routes />
-      </div>
+      <Provider store={store}>
+        <Header />
+        <div className='container py-3'>
+          <Routes />
+        </div>
+      </Provider>
     </HashRouter>
   );
 };

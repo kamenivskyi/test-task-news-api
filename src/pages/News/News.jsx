@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import NewsService from '../../services/newsService';
+import { getNewsList } from '../../redux/news/newsActions';
+
 import CardItem from '../../components/CardItem';
 import Spinner from '../../components/Spinner';
 
-const News = props => {
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const { getNews } = new NewsService();
-
+const News = ({ news, loading, getNewsList }) => {
+  console.log(news);
   useEffect(() => {
-    setLoading(true);
+    let isCurrent = true;
 
-    getNews().then(news => {
-      setNews(news);
-      setLoading(false);
-    });
+    if (isCurrent) {
+      getNewsList();
+    }
+
+    return () => (isCurrent = false);
   }, []);
 
-  const renderItems = news.map(item => <CardItem data={item} />);
+  const renderItems = news.map(item => (
+    <CardItem data={item} key={item.title} />
+  ));
 
   return (
     <>
@@ -32,4 +33,9 @@ const News = props => {
 
 News.propTypes = {};
 
-export default News;
+const mapStateToProps = ({ news: { news, loading } }) => ({
+  news,
+  loading
+});
+
+export default connect(mapStateToProps, { getNewsList })(News);

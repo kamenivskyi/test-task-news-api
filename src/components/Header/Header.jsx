@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
+  const renderLinks = links.map(({ label, linkTo }) => (
+    <li className='nav-item' key={label}>
+      <NavLink exact className='nav-link' to={linkTo}>
+        {label}
+      </NavLink>
+    </li>
+  ));
+
   return (
     <header className='navbar navbar-expand-lg navbar-light bg-light'>
-      <a className='navbar-brand' href='#'>
+      <NavLink to='/' className='navbar-brand'>
         Logo
-      </a>
+      </NavLink>
       <button
         className='navbar-toggler'
         type='button'
@@ -20,15 +28,7 @@ const Header = () => {
         <span className='navbar-toggler-icon'></span>
       </button>
       <div className='collapse navbar-collapse' id='navbarNav'>
-        <ul className='navbar-nav'>
-          {links.map(({ label, linkTo }) => (
-            <li className='nav-item' key={label}>
-              <NavLink className='nav-link' to={linkTo}>
-                {label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        <ul className='navbar-nav'>{renderLinks}</ul>
       </div>
     </header>
   );
@@ -36,7 +36,9 @@ const Header = () => {
 
 const links = [
   { label: 'Home', linkTo: '/' },
-  { label: 'News', linkTo: '/news' }
+  { label: 'News', linkTo: '/news' },
+  { label: 'Profile', linkTo: '/profile' },
+  { label: 'Login', linkTo: '/login' }
 ];
 
 Header.propTypes = {};
