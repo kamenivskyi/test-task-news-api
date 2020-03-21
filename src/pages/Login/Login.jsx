@@ -22,6 +22,10 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
+    if (getItemFromStorage('isAuthorized')) {
+      this.props.setAuthStatusTrue();
+    }
+
     window.addEventListener('storage', this.handleStorageChanges);
   }
 
@@ -31,6 +35,7 @@ class Login extends React.Component {
 
   handleStorageChanges = () => {
     if (getItemFromStorage('isAuthorized')) {
+      console.log('login storage changes');
       this.props.setAuthStatusTrue();
     }
   };

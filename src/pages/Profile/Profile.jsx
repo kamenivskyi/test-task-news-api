@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { getItemFromStorage } from '../../services/utils/localStorage';
 
 const Profile = ({ isLoggedIn, setAuthStatusFalse }) => {
   const handleStorageChanges = () => {
-    if (!getItemFromStorage('isAuthorized')) {
+    if (getItemFromStorage('isAuthorized') === false) {
       setAuthStatusFalse();
     }
   };
@@ -20,12 +20,12 @@ const Profile = ({ isLoggedIn, setAuthStatusFalse }) => {
     return () => window.removeEventListener('storage', handleStorageChanges);
   }, [getItemFromStorage('isAuthorized')]);
 
-  const defaultImgUrl =
-    'https://media4.s-nbcnews.com/j/newscms/2016_36/1685951/ss-160826-twip-05_8cf6d4cb83758449fd400c7c3d71aa1f.fit-760w.jpg';
-
-  if (!isLoggedIn) {
+  if (!getItemFromStorage('isAuthorized') || !isLoggedIn) {
     return <Redirect to='/login' />;
   }
+
+  const defaultImgUrl =
+    'https://media4.s-nbcnews.com/j/newscms/2016_36/1685951/ss-160826-twip-05_8cf6d4cb83758449fd400c7c3d71aa1f.fit-760w.jpg';
 
   return (
     <article className='text-center'>
