@@ -1,28 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import { setAuthStatusFalse } from '../../redux/auth/authActions';
 
+import { setItemToStorage } from '../../services/utils/localStorage';
+
+import './Header.css';
+
 const Header = ({ setAuthStatusFalse }) => {
-  const renderLinks = links.map(({ label, linkTo, style }) => (
-    <li className='nav-item' key={label} style={style}>
+  const renderLinks = links.map(({ label, linkTo, classes }) => (
+    <li className={classes} key={label}>
       <NavLink exact className='nav-link' to={linkTo}>
         {label}
       </NavLink>
     </li>
   ));
 
-  const handleLogout = () => {
+  const handleLogout = event => {
+    event.preventDefault();
     setAuthStatusFalse();
-    localStorage.setItem('isAuthorized', JSON.stringify(false));
+    setItemToStorage('isAuthorized', false);
   };
 
   return (
     <header className='navbar navbar-expand-lg navbar-light bg-light'>
-      <NavLink to='/' className='navbar-brand'>
+      <Link to='/' className='navbar-brand'>
         Logo
-      </NavLink>
+      </Link>
       <button
         className='navbar-toggler'
         type='button'
@@ -37,21 +43,23 @@ const Header = ({ setAuthStatusFalse }) => {
       <div className='collapse navbar-collapse' id='navbarNav'>
         <ul className='navbar-nav w-100'>{renderLinks}</ul>
 
-        <div className='nav-link' onClick={handleLogout}>
+        <a href='/login' onClick={handleLogout}>
           Logout
-        </div>
+        </a>
       </div>
     </header>
   );
 };
 
 const links = [
-  { label: 'Home', linkTo: '/' },
-  { label: 'News', linkTo: '/news' },
-  { label: 'Profile', linkTo: '/profile', style: { marginLeft: 'auto' } },
-  { label: 'Login', linkTo: '/login' }
+  { label: 'Home', linkTo: '/', classes: 'nav-item' },
+  { label: 'News', linkTo: '/news', classes: 'nav-item' },
+  { label: 'Profile', linkTo: '/profile', classes: 'nav-item profile-link' },
+  { label: 'Login', linkTo: '/login', classes: 'nav-item' }
 ];
 
-Header.propTypes = {};
+Header.propTypes = {
+  setAuthStatusFalse: PropTypes.func
+};
 
 export default connect(null, { setAuthStatusFalse })(Header);

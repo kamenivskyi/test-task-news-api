@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { newsPropTypes } from '../../services/utils/newsPropTypes';
+import ExternalLink from '../ExternalLink/ExternalLink';
 
 const CardItem = ({ data }) => {
   const {
@@ -18,7 +19,7 @@ const CardItem = ({ data }) => {
   const reserveImg = 'https://via.placeholder.com/150.jpg/';
 
   return (
-    <div className='col-lg-3 mt-2'>
+    <div className='col-sm-6 col-md-4 col-lg-3 mt-2'>
       <div className='card'>
         <img
           src={urlToImage || reserveImg}
@@ -39,14 +40,9 @@ const CardItem = ({ data }) => {
         </ul>
         {url && (
           <div className='card-body'>
-            <a
-              href={url}
-              target='_blank'
-              className='card-link'
-              rel='noopener noreferrer'
-            >
+            <ExternalLink href={url} className='card-link'>
               Link
-            </a>
+            </ExternalLink>
           </div>
         )}
       </div>

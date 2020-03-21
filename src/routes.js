@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
-import News from './pages/News';
-import NotFound from './pages/NotFound';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
+import Home from './pages/Home/Home';
+import News from './pages/News/News';
+import NotFound from './pages/NotFound/NotFound';
+import Profile from './pages/Profile/Profile';
+import Login from './pages/Login/Login';
 
 const Routes = () => (
   <Switch>

@@ -6,23 +6,29 @@ import { getNewsList } from '../../redux/news/newsActions';
 
 import { newsPropTypes } from '../../services/utils/newsPropTypes';
 
-import CardItem from '../../components/CardItem';
-import Spinner from '../../components/Spinner';
+import CardItem from '../../components/CardItem/CardItem';
+import Spinner from '../../components/Spinner/Spinner';
+import ExternalLink from '../../components/ExternalLink/ExternalLink';
+import ErrorIndicator from '../../components/ErrorIndicator/ErrorIndicator';
 
-const News = ({ news, loading, getNewsList }) => {
+const News = ({ news, loading, getNewsList, error }) => {
   useEffect(() => {
-    let isCurrent = true;
+    let cancelled = false;
 
-    if (isCurrent) {
+    if (!cancelled) {
       getNewsList();
     }
 
-    return () => (isCurrent = false);
+    return () => (cancelled = true);
   }, [getNewsList]);
 
   const renderItems = news.map(item => (
     <CardItem data={item} key={item.title} />
   ));
+
+  if (error) {
+    return <ErrorIndicator />;
+  }
 
   return (
     <>
@@ -35,13 +41,9 @@ const News = ({ news, loading, getNewsList }) => {
             {renderItems}
             <p className='text-center col-12 my-3'>
               NEWS API -
-              <a
-                href='https://newsapi.org/'
-                target='_blank'
-                rel='noopener noreferer'
-              >
+              <ExternalLink href='https://newsapi.org/'>
                 https://newsapi.org/
-              </a>
+              </ExternalLink>
             </p>
           </>
         )}
@@ -51,12 +53,15 @@ const News = ({ news, loading, getNewsList }) => {
 };
 
 News.propTypes = {
-  news: PropTypes.arrayOf(PropTypes.shape(newsPropTypes))
+  news: PropTypes.arrayOf(PropTypes.shape(newsPropTypes)),
+  getNewsList: PropTypes.func.isRequired,
+  loading: PropTypes.bool
 };
 
-const mapStateToProps = ({ news: { news, loading } }) => ({
+const mapStateToProps = ({ news: { news, loading, error } }) => ({
   news,
-  loading
+  loading,
+  error
 });
 
 export default connect(mapStateToProps, { getNewsList })(News);

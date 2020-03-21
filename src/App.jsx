@@ -12,17 +12,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 
-const App = () => {
-  return (
-    <HashRouter>
-      <Provider store={store}>
-        <Header />
-        <div className='container py-3'>
-          <Routes />
-        </div>
-      </Provider>
-    </HashRouter>
-  );
-};
+const App = () => (
+  <HashRouter>
+    <Provider store={store}>
+      <Header />
+      <div className='container py-3'>
+        <Routes />
+      </div>
+    </Provider>
+  </HashRouter>
+);
 
 export default App;

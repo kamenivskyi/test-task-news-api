@@ -1,17 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { setAuthStatusTrue } from '../../redux/auth/authActions';
 
+import {
+  getItemFromStorage,
+  setItemToStorage
+} from '../../services/utils/localStorage';
+
 class Login extends React.Component {
   state = {
     userName: '',
-    userPassword: '',
-    isLoggedIn: null
+    userPassword: ''
   };
 
-  componentDidMount() {}
+  static propTypes = {
+    setAuthStatusTrue: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired
+  };
+
+  componentDidMount() {
+    if (getItemFromStorage('isAuthorized')) {
+      this.props.setAuthStatusTrue();
+    }
+  }
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({
@@ -24,13 +38,14 @@ class Login extends React.Component {
     const { userName, userPassword } = this.state;
 
     this.checkAuthData(userName, userPassword);
-
-    this.setState({ userName: '', userPassword: '' });
   };
 
   checkAuthData = (name, password) => {
     if (name === 'admin' && password === '12345') {
+      setItemToStorage('isAuthorized', true);
       this.props.setAuthStatusTrue();
+
+      this.setState({ userName: '', userPassword: '' });
     } else {
       alert('The username or password you entered is incorrect');
     }
@@ -50,7 +65,7 @@ class Login extends React.Component {
         style={{ maxWidth: '320px' }}
         onSubmit={this.handleSubmitForm}
       >
-        <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
+        <h1 className='h3 mb-3'>Please sign in</h1>
 
         <input
           type='text'
@@ -80,8 +95,8 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLoggedIn: state.auth.isLoggedIn
+const mapStateToProps = ({ auth: { isLoggedIn } }) => ({
+  isLoggedIn
 });
 
 export default connect(mapStateToProps, { setAuthStatusTrue })(Login);
