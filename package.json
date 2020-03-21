@@ -1,9 +1,5 @@
 {
   "homepage": "http://kamenivskyi.github.io/test-task-news-api",
-  "author": {
-    "name": "Roma Kamenivskyi",
-    "email": "jumji19992412@gmail.com"
-  },
   "name": "west-solutions-test-task",
   "version": "0.1.0",
   "private": true,
@@ -19,15 +15,16 @@
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "surge": "^0.21.3"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

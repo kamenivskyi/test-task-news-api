@@ -1,6 +1,6 @@
 class NewsService {
   _apiKey = 'bfc2f3acc4214df2ba209a463899a605';
-  _apiBase = 'http://newsapi.org/v2';
+  _apiBase = 'https://newsapi.org/v2';
 
   getResource = async url => {
     const res = await fetch(`${this._apiBase}${url}`);
