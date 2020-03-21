@@ -22,10 +22,18 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
+    window.addEventListener('storage', this.handleStorageChanges);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.handleStorageChanges);
+  }
+
+  handleStorageChanges = () => {
     if (getItemFromStorage('isAuthorized')) {
       this.props.setAuthStatusTrue();
     }
-  }
+  };
 
   handleInputChange = ({ target: { name, value } }) => {
     this.setState({

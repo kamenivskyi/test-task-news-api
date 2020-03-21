@@ -25,7 +25,7 @@ const Header = ({ setAuthStatusFalse }) => {
   };
 
   return (
-    <header className='navbar navbar-expand-lg navbar-light bg-light'>
+    <header className='navbar navbar-expand-sm navbar-light bg-light'>
       <Link to='/' className='navbar-brand'>
         Logo
       </Link>
