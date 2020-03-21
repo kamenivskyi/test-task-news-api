@@ -1,4 +1,4 @@
-# [Preview](https://kamenivskyi.github.io/portfolio/)
+# [Preview](https://kamenivskyi.github.io/test-task-news-api/)
 
 ### To access fake data:
 
