@@ -39,7 +39,12 @@ const CardItem = ({ data }) => {
         </ul>
         {url && (
           <div className='card-body'>
-            <a href={url} className='card-link'>
+            <a
+              href={url}
+              target='_blank'
+              className='card-link'
+              rel='noopener noreferrer'
+            >
               Link
             </a>
           </div>

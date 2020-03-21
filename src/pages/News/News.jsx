@@ -18,7 +18,7 @@ const News = ({ news, loading, getNewsList }) => {
     }
 
     return () => (isCurrent = false);
-  }, []);
+  }, [getNewsList]);
 
   const renderItems = news.map(item => (
     <CardItem data={item} key={item.title} />
@@ -27,7 +27,25 @@ const News = ({ news, loading, getNewsList }) => {
   return (
     <>
       <h2 className='text-center'>News</h2>
-      <div className='row'>{loading ? <Spinner /> : renderItems}</div>
+      <div className='row'>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            {renderItems}
+            <p className='text-center col-12 my-3'>
+              NEWS API -
+              <a
+                href='https://newsapi.org/'
+                target='_blank'
+                rel='noopener noreferer'
+              >
+                https://newsapi.org/
+              </a>
+            </p>
+          </>
+        )}
+      </div>
     </>
   );
 };
