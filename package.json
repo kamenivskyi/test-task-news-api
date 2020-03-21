@@ -1,4 +1,9 @@
 {
+  "homepage": "http://kamenivskyi.github.io/test-task-news-api",
+  "author": {
+    "name": "Roma Kamenivskyi",
+    "email": "jumji19992412@gmail.com"
+  },
   "name": "west-solutions-test-task",
   "version": "0.1.0",
   "private": true,
@@ -17,6 +22,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -36,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
