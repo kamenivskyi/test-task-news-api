@@ -10,6 +10,8 @@ import {
   setItemToStorage
 } from '../../utils/localStorage';
 
+import './Login.css';
+
 class Login extends React.Component {
   state = {
     userName: '',
@@ -74,11 +76,10 @@ class Login extends React.Component {
 
     return (
       <form
-        className='form-signin m-auto'
-        style={{ maxWidth: '320px' }}
+        className='login-form'
         onSubmit={this.handleSubmitForm}
       >
-        <h1 className='h3 mb-3'>Please sign in</h1>
+        <h1 className='login-title'>Please sign in</h1>
 
         <input
           type='text'

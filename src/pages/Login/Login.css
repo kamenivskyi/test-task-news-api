@@ -1,0 +1,9 @@
+.login-form {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.login-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}

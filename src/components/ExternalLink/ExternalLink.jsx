@@ -8,7 +8,11 @@ const ExternalLink = ({ children: content, ...rest }) => (
 );
 
 ExternalLink.propTypes = {
-  content: PropTypes.node
+  content: PropTypes.node,
+};
+
+ExternalLink.defaultProps = {
+  content: 'link'
 };
 
 export default ExternalLink;

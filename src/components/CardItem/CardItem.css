@@ -1,0 +1,8 @@
+.collection-item {
+  margin: 20px 0;
+}
+
+.collection-img {
+  height: 150px;
+  object-fit: cover;
+}
