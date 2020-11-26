@@ -10,8 +10,6 @@ export const getNewsList = () => async dispatch => {
 
     const data = await getNews();
 
-    console.log(data);
-
     dispatch({ type: Types.GET_NEWS_LIST, payload: data });
   } catch (error) {
     dispatch({

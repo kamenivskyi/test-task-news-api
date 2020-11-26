@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const newsPropTypes = {
+export const newsShape = PropTypes.shape({
   title: PropTypes.string,
   description: PropTypes.string,
   author: PropTypes.string,
@@ -8,4 +8,4 @@ export const newsPropTypes = {
   urlToImage: PropTypes.string,
   publishedAt: PropTypes.string,
   content: PropTypes.string
-};
+});

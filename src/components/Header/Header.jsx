@@ -5,7 +5,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import { setAuthStatusFalse } from '../../redux/auth/authActions';
 
-import { setItemToStorage } from '../../services/utils/localStorage';
+import { setItemToStorage } from '../../utils/localStorage';
 
 import './Header.css';
 

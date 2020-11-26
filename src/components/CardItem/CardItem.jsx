@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { newsPropTypes } from '../../services/utils/newsPropTypes';
+import { newsShape } from '../../utils/commonPropTypes';
 import ExternalLink from '../ExternalLink/ExternalLink';
 
 const CardItem = ({ data }) => {
@@ -51,7 +50,7 @@ const CardItem = ({ data }) => {
 };
 
 CardItem.propTypes = {
-  data: PropTypes.shape(newsPropTypes)
+  data: newsShape
 };
 
 export default CardItem;

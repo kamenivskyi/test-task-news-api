@@ -8,7 +8,7 @@ import { setAuthStatusTrue } from '../../redux/auth/authActions';
 import {
   getItemFromStorage,
   setItemToStorage
-} from '../../services/utils/localStorage';
+} from '../../utils/localStorage';
 
 class Login extends React.Component {
   state = {

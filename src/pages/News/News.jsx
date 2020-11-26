@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getNewsList } from '../../redux/news/newsActions';
 
-import { newsPropTypes } from '../../services/utils/newsPropTypes';
+import { newsShape } from '../../utils/commonPropTypes';
 
 import CardItem from '../../components/CardItem/CardItem';
 import Spinner from '../../components/Spinner/Spinner';
@@ -53,7 +53,7 @@ const News = ({ news, loading, getNewsList, error }) => {
 };
 
 News.propTypes = {
-  news: PropTypes.arrayOf(PropTypes.shape(newsPropTypes)),
+  news: PropTypes.arrayOf(newsShape),
   getNewsList: PropTypes.func.isRequired,
   loading: PropTypes.bool
 };

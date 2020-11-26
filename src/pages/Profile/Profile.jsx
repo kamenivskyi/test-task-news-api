@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import { setAuthStatusFalse } from '../../redux/auth/authActions';
 
-import { getItemFromStorage } from '../../services/utils/localStorage';
+import { getItemFromStorage } from '../../utils/localStorage';
 
 const Profile = ({ isLoggedIn, setAuthStatusFalse }) => {
   const handleStorageChanges = () => {
