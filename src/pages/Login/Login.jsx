@@ -1,6 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { setAuthStatusTrue } from "../../redux/auth/authActions";
 import { setItemToStorage } from "../../utils/localStorage";
@@ -9,7 +8,6 @@ import Form from "../../components/Form/Form";
 import "./Login.css";
 
 const Login = () => {
-  const { isLoggedIn } = useSelector(({ authData }) => authData);
   const dispatch = useDispatch();
 
   const checkAuthData = (name, password) => {
@@ -20,10 +18,6 @@ const Login = () => {
       alert("The username or password you entered is incorrect");
     }
   };
-
-  if (isLoggedIn) {
-    return <Redirect to="/profile" />;
-  }
 
   return (
     <>
