@@ -1,17 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import Routes from './routes';
-import Header from './components/Header/Header';
+import Header from "./components/Header/Header";
+import Routes from "./routes";
+import { useHandleAuth } from "./hooks";
 
-import './App.css';
+import "./App.css";
 
-const App = () => (
-  <>
-    <Header />
-    <div className='container py-3'>
-      <Routes />
-    </div>
-  </>
-);
+const App = () => {
+  useHandleAuth();
+
+  return (
+    <>
+      <Header />
+      <div className="container py-3">
+        <Routes />
+      </div>
+    </>
+  );
+};
 
 export default App;
