@@ -1,33 +1,32 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { getNewsList } from '../../redux/news/newsActions';
-
-import { newsShape } from '../../utils/commonPropTypes';
 
 import CardItem from '../../components/CardItem/CardItem';
 import Spinner from '../../components/Spinner/Spinner';
 import ExternalLink from '../../components/ExternalLink/ExternalLink';
 import ErrorIndicator from '../../components/ErrorIndicator/ErrorIndicator';
 
-const News = ({ news, loading, getNewsList, error }) => {
+const News = () => {
+  const { news, loading, error } = useSelector(({ newsData }) => ({
+    news: newsData.news,
+    loading: newsData.loading,
+    error: newsData.error,
+  }));
+
+  const dispatch = useDispatch();
+  
   useEffect(() => {
-    let cancelled = false;
-
-    if (!cancelled) {
-      getNewsList();
-    }
-
-    return () => (cancelled = true);
-  }, [getNewsList]);
+    dispatch(getNewsList());
+  }, [dispatch, getNewsList]);
+  console.log(news);
 
   const renderItems = news.map(item => (
     <CardItem data={item} key={item.title} />
   ));
 
   if (error) {
-    return <ErrorIndicator />;
+    return <ErrorIndicator />
   }
 
   return (
@@ -52,16 +51,4 @@ const News = ({ news, loading, getNewsList, error }) => {
   );
 };
 
-News.propTypes = {
-  news: PropTypes.arrayOf(newsShape),
-  getNewsList: PropTypes.func.isRequired,
-  loading: PropTypes.bool
-};
-
-const mapStateToProps = ({ news: { news, loading, error } }) => ({
-  news,
-  loading,
-  error
-});
-
-export default connect(mapStateToProps, { getNewsList })(News);
+export default News;

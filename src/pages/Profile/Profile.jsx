@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { setAuthStatusFalse } from '../../redux/auth/authActions';
-
 import { getItemFromStorage } from '../../utils/localStorage';
 
 const Profile = ({ isLoggedIn, setAuthStatusFalse }) => {
@@ -43,7 +42,7 @@ const Profile = ({ isLoggedIn, setAuthStatusFalse }) => {
   );
 };
 
-const mapStateToProps = ({ auth: { isLoggedIn } }) => ({
+const mapStateToProps = ({ authData: { isLoggedIn } }) => ({
   isLoggedIn
 });
 

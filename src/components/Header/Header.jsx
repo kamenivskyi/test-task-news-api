@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
 import { setAuthStatusFalse } from '../../redux/auth/authActions';
-
 import { setItemToStorage } from '../../utils/localStorage';
 
 import './Header.css';
 
-const Header = ({ setAuthStatusFalse }) => {
+const Header = () => {
+  const dispatch = useDispatch();
+
   const renderLinks = links.map(({ label, linkTo, classes }) => (
     <li className={classes} key={label}>
       <NavLink exact className='nav-link' to={linkTo}>
@@ -20,12 +21,12 @@ const Header = ({ setAuthStatusFalse }) => {
 
   const handleLogout = event => {
     event.preventDefault();
-    setAuthStatusFalse();
+    dispatch(setAuthStatusFalse());
     setItemToStorage('isAuthorized', false);
   };
 
   return (
-    <header className='navbar navbar-expand-sm navbar-light bg-light'>
+    <header className='navbar navbar-expand-sm navbar-dark bg-dark'>
       <Link to='/' className='navbar-brand'>
         Logo
       </Link>
@@ -62,4 +63,4 @@ Header.propTypes = {
   setAuthStatusFalse: PropTypes.func
 };
 
-export default connect(null, { setAuthStatusFalse })(Header);
+export default Header;

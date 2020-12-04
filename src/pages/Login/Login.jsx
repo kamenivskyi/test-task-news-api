@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { setAuthStatusTrue } from '../../redux/auth/authActions';
@@ -11,64 +11,45 @@ import {
 } from '../../utils/localStorage';
 
 import './Login.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-class Login extends React.Component {
-  state = {
-    userName: '',
-    userPassword: ''
-  };
+const Login = () => {
+  const [formState, setFormState] = useState({ name: '', password: '' });
+  const dispatch = useDispatch();
 
-  static propTypes = {
-    setAuthStatusTrue: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired
-  };
+  const { isLoggedIn } = useSelector(({ authData }) => authData);
+  const { name, password } = formState;
 
-  componentDidMount() {
+  useEffect(() => {
     if (getItemFromStorage('isAuthorized')) {
-      this.props.setAuthStatusTrue();
+    
+      dispatch(setAuthStatusTrue());
     }
+  }, []);
 
-    window.addEventListener('storage', this.handleStorageChanges);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('storage', this.handleStorageChanges);
-  }
-
-  handleStorageChanges = () => {
-    if (getItemFromStorage('isAuthorized')) {
-      console.log('login storage changes');
-      this.props.setAuthStatusTrue();
-    }
-  };
-
-  handleInputChange = ({ target: { name, value } }) => {
-    this.setState({
+  const handleInputChange = ({ target: { name, value } }) => {
+    setFormState({
+      ...formState,
       [name]: value
     });
-  };
+  };  
 
-  handleSubmitForm = event => {
+  const handleSubmitForm = event => {
     event.preventDefault();
-    const { userName, userPassword } = this.state;
-
-    this.checkAuthData(userName, userPassword);
+    checkAuthData(name, password);
   };
 
-  checkAuthData = (name, password) => {
+  const checkAuthData = (name, password) => {
     if (name === 'admin' && password === '12345') {
       setItemToStorage('isAuthorized', true);
-      this.props.setAuthStatusTrue();
+      dispatch(setAuthStatusTrue());
 
-      this.setState({ userName: '', userPassword: '' });
+      setFormState({ ...formState, name: '', password: '' });
     } else {
       alert('The username or password you entered is incorrect');
     }
   };
-
-  render() {
-    const { userName, userPassword } = this.state;
-    const { isLoggedIn } = this.props;
 
     if (isLoggedIn) {
       return <Redirect to='/profile' />;
@@ -77,7 +58,7 @@ class Login extends React.Component {
     return (
       <form
         className='login-form'
-        onSubmit={this.handleSubmitForm}
+        onSubmit={handleSubmitForm}
       >
         <h1 className='login-title'>Please sign in</h1>
 
@@ -85,10 +66,10 @@ class Login extends React.Component {
           type='text'
           className='form-control'
           placeholder='Username'
-          name='userName'
+          name='name'
           autoFocus={true}
-          value={userName}
-          onChange={this.handleInputChange}
+          value={name}
+          onChange={handleInputChange}
           required
         />
 
@@ -96,9 +77,9 @@ class Login extends React.Component {
           type='password'
           className='form-control my-3'
           placeholder='Password'
-          name='userPassword'
-          value={userPassword}
-          onChange={this.handleInputChange}
+          name='password'
+          value={password}
+          onChange={handleInputChange}
           required
         />
         <button className='btn btn-lg btn-dark btn-block' type='submit'>
@@ -106,11 +87,5 @@ class Login extends React.Component {
         </button>
       </form>
     );
-  }
 }
-
-const mapStateToProps = ({ auth: { isLoggedIn } }) => ({
-  isLoggedIn
-});
-
-export default connect(mapStateToProps, { setAuthStatusTrue })(Login);
+export default Login;
