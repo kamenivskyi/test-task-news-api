@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9e6fd2d76db9f8b007cdcf37a1e6905c",
+    "revision": "d53e80577c5a77a0fe131ffe07269496",
     "url": "/test-task-news-api/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/test-task-news-api/static/css/2.3cf5d70f.chunk.css"
   },
   {
-    "revision": "35425d9e05bd467d6a52",
+    "revision": "3502b2e6c51331aadacd",
     "url": "/test-task-news-api/static/css/main.4c263c4d.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/test-task-news-api/static/js/2.6af76f11.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "35425d9e05bd467d6a52",
-    "url": "/test-task-news-api/static/js/main.02335e38.chunk.js"
+    "revision": "3502b2e6c51331aadacd",
+    "url": "/test-task-news-api/static/js/main.6a959f6d.chunk.js"
   },
   {
     "revision": "25356067e36e2474e676",
