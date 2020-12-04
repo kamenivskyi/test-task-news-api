@@ -5,13 +5,15 @@ import { NavLink, Link } from "react-router-dom";
 
 import { setAuthStatusFalse } from "redux/auth/authActions";
 import { setItemToStorage } from "services/localStorageService";
+import { headerLinksList, authStorageKey, routesLinks } from "utils/config";
 
 import "./Header.css";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const renderLinks = links.map(({ label, linkTo, classes }) => (
+  const { home, login } = routesLinks;
+  const renderLinks = headerLinksList.map(({ label, linkTo, classes }) => (
     <li className={classes} key={label}>
       <NavLink exact className="nav-link" to={linkTo}>
         {label}
@@ -22,12 +24,12 @@ const Header = () => {
   const handleLogout = (event) => {
     event.preventDefault();
     dispatch(setAuthStatusFalse());
-    setItemToStorage("isAuthorized", false);
+    setItemToStorage(authStorageKey, false);
   };
 
   return (
     <header className="navbar navbar-expand-sm navbar-dark bg-dark">
-      <Link to="/" className="navbar-brand">
+      <Link to={home} className="navbar-brand">
         Logo
       </Link>
       <button
@@ -44,20 +46,13 @@ const Header = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav w-100">{renderLinks}</ul>
 
-        <a href="/login" onClick={handleLogout}>
+        <a href={login} onClick={handleLogout}>
           Logout
         </a>
       </div>
     </header>
   );
 };
-
-const links = [
-  { label: "Home", linkTo: "/", classes: "nav-item" },
-  { label: "News", linkTo: "/news", classes: "nav-item" },
-  { label: "Profile", linkTo: "/profile", classes: "nav-item profile-link" },
-  { label: "Login", linkTo: "/login", classes: "nav-item" },
-];
 
 Header.propTypes = {
   setAuthStatusFalse: PropTypes.func,

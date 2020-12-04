@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Redirect, Route } from "react-router-dom";
+import { routesLinks } from "utils/config";
 
 const ProtectedRoute = ({
   component: Component,
   isAuthenticated,
-  redirectTo = "/",
+  redirectTo = routesLinks.home,
   ...rest
 }) => (
   <Route

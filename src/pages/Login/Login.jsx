@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import Form from "components/Form/Form";
 import { setAuthStatusTrue } from "redux/auth/authActions";
 import { setItemToStorage } from "services/localStorageService";
-import Form from "components/Form/Form";
+import { authStorageKey, loginIncorrectMessage } from "utils/config";
 
 import "./Login.css";
 
@@ -12,10 +13,10 @@ const Login = () => {
 
   const checkAuthData = (name, password) => {
     if (name === "admin" && password === "12345") {
-      setItemToStorage("isAuthorized", true);
+      setItemToStorage(authStorageKey, true);
       dispatch(setAuthStatusTrue());
     } else {
-      alert("The username or password you entered is incorrect");
+      alert(loginIncorrectMessage);
     }
   };
 
