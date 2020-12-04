@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  setAuthStatusFalse,
-  setAuthStatusTrue,
-} from "../redux/auth/authActions";
-import { getItemFromStorage } from "../services/localStorageService";
+import { setAuthStatusFalse, setAuthStatusTrue } from "redux/auth/authActions";
+import { getItemFromStorage } from "services/localStorageService";
 
 export const useHandleAuth = () => {
   const dispatch = useDispatch();

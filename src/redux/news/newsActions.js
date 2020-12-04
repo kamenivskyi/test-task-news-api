@@ -1,10 +1,10 @@
-import Types from './newsTypes';
+import Types from "./newsTypes";
 
-import NewsService from '../../services/newsService';
+import NewsService from "services/newsService";
 
 const { getNews } = new NewsService();
 
-export const getNewsList = () => async dispatch => {
+export const getNewsList = () => async (dispatch) => {
   try {
     dispatch(setLoading());
 
@@ -14,7 +14,7 @@ export const getNewsList = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: Types.GET_NEWS_LIST_ERROR,
-      payload: error.response
+      payload: error.response,
     });
   }
 };

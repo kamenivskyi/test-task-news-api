@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { setAuthStatusTrue } from "../../redux/auth/authActions";
-import { setItemToStorage } from "../../utils/localStorage";
-import Form from "../../components/Form/Form";
+import { setAuthStatusTrue } from "redux/auth/authActions";
+import { setItemToStorage } from "services/localStorageService";
+import Form from "components/Form/Form";
 
 import "./Login.css";
 

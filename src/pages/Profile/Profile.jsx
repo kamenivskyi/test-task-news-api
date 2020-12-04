@@ -1,6 +1,6 @@
 import React from "react";
 
-import { defaultProfileImgUrl } from "../../utils/config";
+import { defaultProfileImgUrl } from "utils/config";
 
 const Profile = () => (
   <article className="text-center">
