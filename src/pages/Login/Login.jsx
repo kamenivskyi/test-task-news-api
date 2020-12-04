@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { setAuthStatusTrue } from "../../redux/auth/authActions";
+import {
+  setAuthStatusTrue,
+  setAuthStatusFalse,
+} from "../../redux/auth/authActions";
 import { getItemFromStorage, setItemToStorage } from "../../utils/localStorage";
 
 import "./Login.css";
@@ -17,6 +20,8 @@ const Login = () => {
   useEffect(() => {
     if (getItemFromStorage("isAuthorized")) {
       dispatch(setAuthStatusTrue());
+    } else if (!getItemFromStorage("isAuthorized")) {
+      dispatch(setAuthStatusFalse);
     }
   }, []);
 
